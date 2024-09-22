@@ -1,58 +1,64 @@
-# Fyle Backend Challenge
+# Running the Flask App with Docker
 
-## Who is this for?
+This section describes how to run the Flask application using Docker after cloning the repository.
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. You should be able to commit to at least 6 months of dedicated time for internship.
+## Prerequisites
 
-## Why work at Fyle?
+Make sure you have the following installed on your machine:
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
+- [Docker](https://www.docker.com/get-started) (including Docker Compose)
 
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+## Cloning the Repository
 
+Clone the repository to your local machine:
 
-## Challenge outline
-
-**You are allowed to use any online/AI tool such as ChatGPT, Gemini, etc. to complete the challenge. However, we expect you to fully understand the code and logic involved.**
-
-This challenge involves writing a backend service for a classroom. The challenge is described in detail [here](./Application.md)
-
-
-## What happens next?
-
-You will hear back within 48 hours from us via email. 
-
-
-## Installation
-
-1. Fork this repository to your github account
-2. Clone the forked repository and proceed with steps mentioned below
-
-### Install requirements
-
+```bash
+git clone https://github.com/NavSrijan/fyle-interview-intern-backend
+cd https://github.com/NavSrijan/fyle-interview-intern-backend
 ```
-virtualenv env --python=python3.8
-source env/bin/activate
-pip install -r requirements.txt
-```
-### Reset DB
 
-```
-export FLASK_APP=core/server.py
-rm core/store.sqlite3
-flask db upgrade -d core/migrations/
-```
-### Start Server
+## Building the Docker Image
 
-```
-bash run.sh
-```
-### Run Tests
+1.  Navigate to the project directory (if you haven’t already):
 
+```bash
+cd <repository-directory>
 ```
-pytest -vvv -s tests/
 
-# for test coverage report
-# pytest --cov
-# open htmlcov/index.html
+2. Build the Docker image without using the cache to ensure you have the latest changes:
+
+```bash
+    docker-compose build 
 ```
+
+## Running the Application
+
+To start the application, run:
+
+
+```bash
+docker-compose up
+```
+
+This command will:
+
+- Start the Flask server on port 7755.
+- Run the application using the run.sh script defined in the Dockerfile.
+
+## Accessing the Application
+
+Once the containers are running, you can access the Flask application in your web browser at:
+
+```bash
+http://0.0.0.0:7755
+```
+
+## Stopping the Application
+
+To stop the running application, you can press CTRL+C in the terminal where docker-compose up is running. Alternatively, you can run:
+
+```bash
+docker-compose down
+```
+
+This will stop and remove the containers.

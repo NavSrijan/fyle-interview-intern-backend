@@ -1,3 +1,5 @@
+from core.models.assignments import GradeEnum
+
 def test_get_assignments_teacher_1(client, h_teacher_1):
     response = client.get(
         '/teacher/assignments',
